@@ -21,7 +21,7 @@ class Article:
             self._title = title
         else:
             return None
-            # raise Exception("Title must be a string between 5 and 50 characters long")
+            
 
     @property
     def author(self):
@@ -33,8 +33,7 @@ class Article:
             self._author = author
         else:
             return None
-            # raise Exception("Author must be of type Author")
-
+            
     @property
     def magazine(self):
         return self._magazine
@@ -45,8 +44,7 @@ class Article:
             self._magazine = magazine
         else:
             return None
-            # raise Exception("Magazine must be of type Magazine")
-
+            
 
     
 class Author:
@@ -64,19 +62,18 @@ class Author:
             self._name = name
         else:
             return None
-            # raise Exception("Name must be a non-empty string and it cannot be changed")
-
+            
     def articles(self):
         return [article for article in Article.all if article.author is self]
-        pass
+        
 
     def magazines(self):
         return list({article.magazine for article in self.articles()})
-        pass
+        
 
     def add_article(self, magazine, title):
         return Article(self, magazine, title)
-        pass
+        
 
     def topic_areas(self):
         return (
@@ -84,7 +81,7 @@ class Author:
             if self.magazines()
             else None
         )
-        pass
+        
 
 class Magazine:
     all = [
@@ -105,7 +102,6 @@ class Magazine:
             self._name = name
         else:
             return None
-            # raise Exception("Name must be a string between 2 and 16 characters long")
 
     @property
     def category(self):
@@ -117,26 +113,26 @@ class Magazine:
             self._category = category
         else:
             return None
-            # raise Exception("Category must be a non-empty string")
+            
 
     def articles(self):
         return [article for article in Article.all if article.magazine is self]
-        pass
+        
 
     def contributors(self):
         return list({article.author for article in self.articles()})
 
-        pass
+        
 
     def article_titles(self):
         return (
             [article.title for article in self.articles()] if self.articles() else None
         )
 
-        pass
+        
 
     def contributing_authors(self):
-        pass
+    
         non_unique_authors = [article.author for article in self.articles()]
         if unique_contributors := list(
             {
